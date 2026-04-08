@@ -1,0 +1,8 @@
+{
+    "fishMinSpeed": 1.5,
+    "fishMaxSpeed": 3.0,
+    "detectionRadius": 5.0,
+    "hungerCooldown": 10.0,
+    "trashMinSpeed": 0.5,
+    "trashMaxSpeed": 1.5
+}
