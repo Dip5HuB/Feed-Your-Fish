@@ -6,10 +6,14 @@ public class GameConfig
 {
     public float fishMinSpeed;
     public float fishMaxSpeed;
+    public float fishMinScale;
+    public float fishMaxScale;
     public float detectionRadius;
     public float hungerCooldown;
     public float trashMinSpeed;
     public float trashMaxSpeed;
+    public float trashMinScale;
+    public float trashMaxScale;
 }
 
 public class ConfigManager : MonoBehaviour
@@ -51,10 +55,14 @@ public class ConfigManager : MonoBehaviour
             {
                 fishMinSpeed = 1f,
                 fishMaxSpeed = 3f,
+                fishMinScale = 0.35f,
+                fishMaxScale = 0.8f,
                 detectionRadius = 5f,
                 hungerCooldown = 10f,
                 trashMinSpeed = 0.5f,
-                trashMaxSpeed = 1.5f
+                trashMaxSpeed = 1.5f,
+                trashMinScale = 0.2f,
+                trashMaxScale = 0.4f
             };
         }
     }
