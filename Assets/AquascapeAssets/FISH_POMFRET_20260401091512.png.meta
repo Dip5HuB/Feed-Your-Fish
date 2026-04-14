@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 615254aa5caf8cb4c8349c749a235e4e
+guid: 5428662318b28ab4985f01616c230e94
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -109,6 +109,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -116,10 +129,10 @@ TextureImporter:
       name: FISH_POMFRET_20260401091512_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 136
-        width: 428
-        height: 239
+        x: 5
+        y: 4
+        width: 858
+        height: 481
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

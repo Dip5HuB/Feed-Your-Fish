@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.IO;
 
+
+// Struktur data untuk menyimpan semua parameter yang bisa diatur melalui config.json
 [System.Serializable]
 public class GameConfig
 {
@@ -14,56 +16,59 @@ public class GameConfig
     public float trashMaxSpeed;
     public float trashMinScale;
     public float trashMaxScale;
+    public float trashSpawnIntervalMin; 
+    public float trashSpawnIntervalMax;
+    public int maxTrashAmount; 
 }
 
 public class ConfigManager : MonoBehaviour
 {
-    public static ConfigManager Instance { get; private set; }
+    public static ConfigManager Instance;
+
     public GameConfig Config { get; private set; }
 
-    private void Awake()
+    // Path ke root folder project
+    private string ConfigPath => Path.Combine(
+        Path.GetDirectoryName(Application.dataPath), 
+        "config.json"
+    );
+
+    void Awake()
     {
-        // Singleton pattern agar ConfigManager mudah diakses dari mana saja tanpa perlu referensi langsung
-        if (Instance == null)
+        // Singleton pattern untuk memastikan hanya ada satu instance ConfigManager
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            LoadConfig();
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        LoadConfig();
+    }
+
+    // Fungsi untuk memuat config dari file JSON
+    private void LoadConfig()
+    {
+        if (File.Exists(ConfigPath))
+        {
+            string json = File.ReadAllText(ConfigPath);
+            Config = JsonUtility.FromJson<GameConfig>(json);
+            Debug.Log("<color=green>Config berhasil dimuat dari: " + ConfigPath + "</color>");
         }
         else
         {
-            Destroy(gameObject);
+            // Jika tidak ada, buat config default
+            Config = new GameConfig();
+            SaveConfig();
+            Debug.LogWarning("config.json tidak ditemukan, membuat file default di: " + ConfigPath);
         }
     }
 
-    private void LoadConfig()
+    // Opsional: Simpan config (berguna saat pertama kali generate)
+    public void SaveConfig()
     {
-        string configPath = Path.Combine(Application.dataPath, "../config.json");
-
-        configPath = Path.GetFullPath(configPath);
-
-        if (File.Exists(configPath))
-        {
-            string jsonContent = File.ReadAllText(configPath);
-            Config = JsonUtility.FromJson<GameConfig>(jsonContent);
-            Debug.Log("Config loaded successfully from: " + configPath);
-        }
-        else
-        {
-            Debug.LogWarning("Config file not found at: " + configPath);
-            Config = new GameConfig
-            {
-                fishMinSpeed = 1f,
-                fishMaxSpeed = 3f,
-                fishMinScale = 0.35f,
-                fishMaxScale = 0.8f,
-                detectionRadius = 5f,
-                hungerCooldown = 10f,
-                trashMinSpeed = 0.5f,
-                trashMaxSpeed = 1.5f,
-                trashMinScale = 0.2f,
-                trashMaxScale = 0.4f
-            };
-        }
+        string json = JsonUtility.ToJson(Config, true); // true = pretty print
+        File.WriteAllText(ConfigPath, json);
     }
 }

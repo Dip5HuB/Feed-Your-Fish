@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bf2002ec0c6149542bbd23b8f70a9a2a
+guid: d47ffa6d402ed4f4590db040515567d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6685214220700742483
-    second: TRASH_LOG_20260401091530_0
+      213: 8072149659461135761
+    second: TRASH_CHIPS_20260401091528_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TRASH_LOG_20260401091530_0
+      name: TRASH_CHIPS_20260401091528_0
       rect:
         serializedVersion: 2
-        x: 70
-        y: 111
-        width: 391
-        height: 319
+        x: 0
+        y: 0
+        width: 438
+        height: 241
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dac0eb706195933a0800000000000000
-      internalID: -6685214220700742483
+      spriteID: 19da8f1e859060070800000000000000
+      internalID: 8072149659461135761
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TRASH_LOG_20260401091530_0: -6685214220700742483
+      TRASH_CHIPS_20260401091528_0: 8072149659461135761
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

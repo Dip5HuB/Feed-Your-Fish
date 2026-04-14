@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8589cea5544de1e4f8c27ba9506c76be
+guid: 4bb29cad3fe062040958098ec96e6859
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3415437083054758903
-    second: FISH_ANGELFISH_20260401091518_0
+      213: 4292004450828552428
+    second: btn exit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,17 +109,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FISH_ANGELFISH_20260401091518_0
+      name: btn exit_0
       rect:
         serializedVersion: 2
-        x: 94
-        y: 132
-        width: 324
-        height: 248
+        x: 0
+        y: 0
+        width: 682
+        height: 564
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7fbdc286ee1166f20800000000000000
-      internalID: 3415437083054758903
+      spriteID: ce8080ade43409b30800000000000000
+      internalID: 4292004450828552428
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FISH_ANGELFISH_20260401091518_0: 3415437083054758903
+      btn exit_0: 4292004450828552428
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

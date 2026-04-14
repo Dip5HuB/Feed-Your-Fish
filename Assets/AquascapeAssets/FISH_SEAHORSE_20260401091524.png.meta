@@ -116,10 +116,10 @@ TextureImporter:
       name: FISH_SEAHORSE_20260401091524_0
       rect:
         serializedVersion: 2
-        x: 208
-        y: 171
-        width: 95
-        height: 171
+        x: 16
+        y: 5
+        width: 266
+        height: 482
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
