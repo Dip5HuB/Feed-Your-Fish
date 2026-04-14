@@ -35,15 +35,20 @@ public class AquascapePlayerController : MonoBehaviour
             }
         }
     }
-    
 
     // --- INTERACTION LOGIC ---
     private void ProcessObjectInteraction(Collider2D hit, Vector2 mousePos)
     {
         if (hit.CompareTag("Trash"))
         {
-            // Pemain membersihkan sampah
-            Destroy(hit.gameObject);
+            
+            TrashBehavior trash = hit.GetComponent<TrashBehavior>();
+            if (trash != null)
+            {
+                // Pemain membersihkan sampah
+                ScoreManager.Instance.AddScore(1); // Tambahkan skor saat sampah dibersihkan
+                Destroy(hit.gameObject);
+            }
         }
         else if (hit.CompareTag("Fish"))
         {
