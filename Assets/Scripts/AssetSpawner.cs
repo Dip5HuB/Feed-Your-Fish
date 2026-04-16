@@ -32,19 +32,12 @@ public class AssetSpawner : MonoBehaviour
     void Awake()
     {
         Instance = this;
-    }
 
-    void Start()
-    {
         // Tentukan path ke folder "AquascapeAssets" di dalam folder Assets
         folderPath = Path.Combine(Application.dataPath, "AquascapeAssets");
         folderPath = Path.GetFullPath(folderPath); 
 
-        // Pastikan folder ada, jika tidak buat baru
         if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-
-        LoadExistingAssets();
-        StartFileWatcher();
     }
 
     void Update()
@@ -209,10 +202,11 @@ public class AssetSpawner : MonoBehaviour
             float randomWaitTime = Random.Range(minInterval, maxInterval);
             yield return new WaitForSeconds(randomWaitTime); 
 
+            int currentTrashCount = GameObject.FindGameObjectsWithTag("Trash").Length;
+
             if (availableTrashAssets.Count > 0)
             {
                 SpawnSingleTrashInstance();
-                activeTrashInstances++;
             }
         }
 
@@ -282,4 +276,62 @@ public class AssetSpawner : MonoBehaviour
         return new Vector3(Random.Range(b.min.x, b.max.x), Random.Range(minY, maxY), 0);
     }
 
+    // Fungsi untuk membersihkan akuarium dengan menghancurkan semua ikan, sampah, dan makanan yang ada, serta mereset semua counter dan state terkait agar siap untuk sesi permainan baru.
+    public void ClearAquarium()
+    {
+        // Hentikan semua proses bertahap (seperti TrashSpawnRoutine) yang sedang berjalan
+        StopAllCoroutines();
+
+        // Reset antrean file baru untuk memastikan tidak ada file lama yang tertinggal saat sesi baru dimulai
+        newFilesQueue = new ConcurrentQueue<string>();
+
+        // Hancurkan semua ikan
+        GameObject[] fishes = GameObject.FindGameObjectsWithTag("Fish");
+        foreach (GameObject fish in fishes)
+        {
+            Destroy(fish);
+        }
+
+        // Hancurkan semua sampah & reset counternya agar bisa mulai dari 0 lagi nanti
+        GameObject[] trashes = GameObject.FindGameObjectsWithTag("Trash");
+        foreach (GameObject trash in trashes)
+        {
+            Destroy(trash);
+        }
+        activeTrashInstances = 0;
+        isSpawningTrashPool = false;
+        availableTrashAssets.Clear(); // Bersihkan memori daftar sampah sebelumnya
+
+        // Hancurkan semua makanan yang masih ada
+        GameObject[] foods = GameObject.FindGameObjectsWithTag("Food");
+        foreach (GameObject food in foods)
+        {
+            food.SetActive(false);
+        }
+        
+        Debug.Log("<color=yellow>Akuarium dibersihkan! Semua entitas dikembalikan ke state awal.</color>");
+    }
+
+    // Fungsi untuk merestart proses spawning setelah membersihkan akuarium, memastikan bahwa semua aset yang sudah ada di folder siap untuk di-spawn kembali.
+    public void RestartSpawning()
+    {
+        StopAllCoroutines();
+        
+        // Pastikan semua proses spawn sebelumnya sudah dihentikan dan state terkait sudah di-reset
+        newFilesQueue = new ConcurrentQueue<string>();
+
+        if (watcher == null)
+        {
+            StartFileWatcher();
+        }
+
+        // Baca ulang semua gambar yang ada di folder dan masukkan ke antrean spawn
+        LoadExistingAssets();
+
+        // Jika sebelumnya sudah ada memori tentang sampah, mulai lagi rutinitas jatuhnya
+        if (availableTrashAssets.Count > 0 && !isSpawningTrashPool)
+        {
+            StartCoroutine(TrashSpawnRoutine());
+        }
+    }
 }

@@ -9,7 +9,7 @@
     "trashMaxSpeed": 1,
     "trashMinScale": 0.3,
     "trashMaxScale": 0.5,
-    "trashSpawnIntervalMin": 15.0,
+    "trashSpawnIntervalMin": 10.0,
     "trashSpawnIntervalMax": 20.0,
     "maxTrashAmount": 5
 }

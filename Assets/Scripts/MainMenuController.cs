@@ -7,6 +7,9 @@ public class MainMenuController : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject gameUIPanel; 
 
+    [Header("UI Controls")]
+    public Slider bgmSlider;
+
     [Header("Core Systems to Activate")]
     public AssetSpawner assetSpawner;
     public AquascapePlayerController playerController;
@@ -15,6 +18,12 @@ public class MainMenuController : MonoBehaviour
     void Start()
     {
         ShowMainMenu();
+
+        if (bgmSlider != null)
+        {
+            // Ambil data dari PlayerPrefs (sama seperti di AudioManager)
+            bgmSlider.value = PlayerPrefs.GetFloat("BGM_Volume", 1.0f);
+        }
     }
 
     // --- FUNGSI UNTUK TOMBOL PLAY ---
@@ -26,12 +35,19 @@ public class MainMenuController : MonoBehaviour
         // Tampilkan UI Game
         if (gameUIPanel != null) gameUIPanel.SetActive(true);
 
+        if (ScoreManager.Instance != null) ScoreManager.Instance.ResetScore();
+
         // Nyalakan semua Core System agar game mulai berjalan
-        if (assetSpawner != null) assetSpawner.enabled = true;
+        if (assetSpawner != null) 
+        {
+            assetSpawner.enabled = true;
+            assetSpawner.RestartSpawning();
+        }
+        
         if (playerController != null) playerController.enabled = true;
         if (foodManager != null) foodManager.enabled = true;
 
-        Debug.Log("<color=green>Game Started! Core systems activated.</color>");
+        Debug.Log("<color=green>Game Mulai!.</color>");
     }
 
     // --- FUNGSI UNTUK TOMBOL EXIT ---
@@ -44,12 +60,19 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowMainMenu()
     {
-        // Kembalikan ke state awal (Menu nyala, Game mati)
         if (mainMenuPanel != null) mainMenuPanel.SetActive(true);
         if (gameUIPanel != null) gameUIPanel.SetActive(false);
 
-        if (assetSpawner != null) assetSpawner.enabled = false;
+        // Matikan sistem input dan food manager
         if (playerController != null) playerController.enabled = false;
         if (foodManager != null) foodManager.enabled = false;
+
+        // --- Bersihkan akuarium lalu matikan Spawner ---
+        if (assetSpawner != null) 
+        {
+            assetSpawner.ClearAquarium(); 
+            assetSpawner.enabled = false;
+        }
     }
+
 }

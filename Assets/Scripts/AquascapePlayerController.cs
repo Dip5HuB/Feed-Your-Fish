@@ -47,7 +47,7 @@ public class AquascapePlayerController : MonoBehaviour
             {
                 // Pemain membersihkan sampah
                 ScoreManager.Instance.AddScore(1); // Tambahkan skor saat sampah dibersihkan
-                Destroy(hit.gameObject);
+                trash.CleanTrash();
             }
         }
         else if (hit.CompareTag("Fish"))
@@ -60,6 +60,11 @@ public class AquascapePlayerController : MonoBehaviour
         {
             // Fallback jika objek di layer Spawnable tidak memiliki tag yang sesuai
             SpawnFood(mousePos);
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayInteractionSFX();
         }
     }
 
@@ -81,6 +86,11 @@ public class AquascapePlayerController : MonoBehaviour
             if (foodBehavior != null) foodBehavior.ResetFood(); 
             
             food.SetActive(true); 
+
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayInteractionSFX();
+            }
         }
         else
         {

@@ -49,4 +49,4 @@ Dalam penyelesaian ini, saya menggunakan bantuan *Artificial Intelligence* denga
     1.  **Code Refactoring & Optimization:** Saya merancang arsitektur awal dan logika utama secara mandiri, kemudian menggunakan AI sebagai "teman diskusi" (Pair Programming) untuk mengulas (*review*) dan merapikan kode (*Clean Code*).
     2.  **Optimasi Algoritma:** AI membantu memberikan saran implementasi yang lebih hemat memori, seperti penerapan pola *Circular Object Pooling* pada manajer makanan, serta konversi deteksi klik dari *Raycast* konvensional ke *OverlapPoint* untuk efisiensi komputasi 2D.
     3.  **Problem Solving:** AI membantu mendiagnosa dan menyempurnakan kalkulasi matematika untuk *Screen Boundaries* (`Mathf.Clamp` dikombinasikan dengan luasan *Sprite Bounds*) serta penanganan *loop* tabrakan pada logika *Collision Avoidance* ikan.
-    4.  **Dokumentasi:** AI membantu menyusun draf dokumentasi.
+    4.  **Dokumentasi:** AI membantu menyusun draf dokumentasi agar rapih.

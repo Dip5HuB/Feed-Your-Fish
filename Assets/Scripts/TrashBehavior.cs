@@ -101,10 +101,11 @@ public class TrashBehavior : MonoBehaviour
     // Fungsi yang dipanggil saat pemain mengklik sampah. Sampah akan disembunyikan dan dijadwalkan untuk respawn dengan wujud dan posisi baru setelah beberapa detik.
     public void CleanTrash()
     {
-        if (!isHidden)
-        {
-            StartCoroutine(RespawnRoutine());
-        }
+        Destroy(gameObject);
+        // if (!isHidden)
+        // {
+        //     StartCoroutine(RespawnRoutine());
+        // }
     }
 
     // --- RESPWAN & POOLING ---

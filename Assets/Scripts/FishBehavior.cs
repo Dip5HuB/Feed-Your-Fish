@@ -329,7 +329,7 @@ public class FishBehavior : MonoBehaviour
             if (fishtype == "STARFISH")
             {
                 float tankHeight = bounds.max.y - bounds.min.y;
-                maxY = bounds.min.y + (tankHeight * 0.25f) - halfHeight;
+                maxY = bounds.min.y + (tankHeight * 0.15f) - halfHeight;
 
                 if (maxY < minY) maxY = minY;
             }
